@@ -1,0 +1,46 @@
+ACCION HelloC ES
+    AMBIENTE
+        votos : ARREGLO DE [ 1..5] DE ENTEROS;
+        i: ENTERO;
+
+    PROCESO
+        PARA (i = 1 HASTA 5) HACER
+            votos[i]:= 0;
+        FP;
+
+        // Imprimir las opciones de votacion
+        PARA (i = 1 HASTA 10) HACER
+            ESC("JORNADA ESCOLAR -> Seleccione una de las opciones donde le gustaria realizar el Fin de Curso:");
+            ESC("1. Pic Nic, 2. Bicicleteada al Parque 2 de Febrero, 3. Viaje de excursion a Itati, 4. Un fiesta-baile, 5. Un desfile de mascaras por la peatonal");
+            ESC("- Ingrese el numero de la opcion que prefiere (1-5):");
+            LEER(opcion);
+
+            // Recoger los votos y actualizar el arreglo de votos
+            SEGUN opcion HACER
+                1: arr[1]:=arr[1] + 1;
+                2: arr[2]:=arr[2] + 1;
+                3: arr[3]:=arr[3] + 1;
+                4: arr[4]:=arr[4] + 1;
+                5: arr[5]:=arr[5] + 1;
+            FS;
+        FP;
+
+        // Mostrar los resultados de la votacion
+        ESC("RESULTADOS DE LA VOTACION:");
+        ESC("La opcion 1 cuenta con: ", arr[1], " votos");
+        ESC("La opcion 2 cuenta con: ", arr[2], " votos");
+        ESC("La opcion 3 cuenta con: ", arr[3], " votos");
+        ESC("La opcion 4 cuenta con: ", arr[4], " votos");
+        ESC("La opcion 5 cuenta con: ", arr[5], " votos");
+
+        // Determinar la opcion ganadora
+        PARA (i:= 1 HASTA 5) HACER
+            SI (maxvotos < arr[i]) ENTONCES
+                maxvotos:= arr[i];
+                resgmax:= i;
+            FS;
+        FP;
+        
+        ESC("La opcion ganadora es: ", resgmax, "con: ", maxvotos, " votos");
+    FP;
+FA;
